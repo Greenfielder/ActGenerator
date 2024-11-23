@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Работа с записями</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <header class="card-header">
+                    <h4 class="card-title mt-2"><span>Изменение записи</span></h4>
+                </header>
+                <article class="card-body">
+                    <form th:action="@{/edit}" th:object="${workstation}" method="POST">
+                        <input th:field="*{id}" type="hidden" class="form-control">
+
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>ФИО</label>
+                                <input th:field="*{owner}" type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col form-group">
+                                <label>Имя компа</label>
+                                <input th:field="*{computer}" type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col form-group">
+                                <label>Серийный номер</label>
+                                <input th:field="*{serial_number}" type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col form-group">
+                                <label>Локация</label>
+                                <input th:field="*{location}" type="text" class="form-control" placeholder="">
+                            </div>
+                            <div class="col form-group">
+                                <label>Дата выдачи</label>
+                                <input th:field="*{start_date}" type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Сохранить</button>
+                        </div>
+                    </form>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

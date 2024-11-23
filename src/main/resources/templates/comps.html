@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Пользователи</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Работники:</h2>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>ФИО</th>
+            <th>Имя компа</th>
+            <th>Серийный номер</th>
+            <th>Локация</th>
+            <th>Дата выдачи</th>
+            <th>Редактирование</th>
+            <th>Удаление</th>
+            <th>PDF</th>
+            <th>DOC</th>
+            <th>PDF</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="comp : ${workstations}">
+            <td th:text="${comp.id}"/>
+            <td th:text="${comp.owner}"/>
+            <td th:text="${comp.computer}"/>
+            <td th:text="${comp.serial_number}"/>
+            <td th:text="${comp.location}"/>
+            <td th:text="${comp.start_date}"/>
+            <td>
+                <a th:href="@{'/edit/' + ${comp.id}}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{'/delete/' + ${comp.id}}">Del</a>
+            </td>
+            <td>
+                <a th:href="@{'/add/' + ${comp.id}}">Add</a>
+            </td>
+            <td>
+                <a th:href="@{'/' + ${comp.file_Path}}">doc</a>
+            </td>
+            <td>
+                <a th:href="@{'/pdf/' + ${comp.id}}">Gen</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <form th:action="@{/comps}" method="GET">
+        <input th:value="${word != null} ? ${word}" th:name="word" type="text" placeholder="Сотрудник">
+        <button type="submit" class="btn btn-primary">Найти</button>
+    </form>
+
+    <a href="/edit">Edit</a>
+<!--    <a href="/add">Add</a>-->
+</div>
+
+</body>
+</html>
